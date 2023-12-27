@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../partials/head") %>
+  </head>
+  <body>
+    <%- include ("../partials/new.ejs") %>
+    <div class="container">
+      <div class="row ">
+        <div class="col-12 mt-3">
+          <% if (action != "undefined" && action=="edit") { %>
+              <div class="col-12 alert alert-success">İslem Basarili. Kategori Güncellendi</div>
+          <% } %>
+          <% if (action != "undefined" && action=="create") { %>
+            <div class="col-12 alert alert-success">İslem Basarili. Kategori Olustruldu</div>
+        <% } %>
+        <% if (action != "undefined" && action=="delete") { %>
+          <div class="col-12 alert alert-success">İslem Basarili. Kategori Silindi</div>
+      <% } %>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:150px">İd</th>
+                <th style="width:150px">Name</ths>
+                <th style="width:10px">Controller</ths>
+              
+              </tr>
+            </thead>
+            <tbody>
+              <% category.forEach(category=> { %>
+              <tr>
+                <td><%= category.dataValues.id%></td>
+                <td><%= category.dataValues.name %></td>
+                <td><a class="btn  btn-sm btn-primary " href="/admin/category/<%= category.dataValues.id%>">Edit</a>
+                  <a class="btn  btn-sm btn-danger "href="/admin/category/delete/<%= category.dataValues.id%>">Delete</a>
+                </td>
+               
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

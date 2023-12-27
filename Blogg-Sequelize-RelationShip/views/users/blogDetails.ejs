@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../partials/head") %>
+  </head>
+
+  <body>
+    <%- include ("../partials/new.ejs") %>
+
+    <div class="container mt-3">
+      <div class="row">
+        <!--MENU BAR-->
+
+        <div class="col-md-4">
+          <img class="img-fluid w-100" src="/static/images/<%=blog.resim %>" alt=""/>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title"><%= blog.title %></h5>
+            <p class="card-text"><%- blog.altbaslik %></p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <%- blog.Content %> 
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../partials/head") %>
+  </head>
+  <body>
+
+
+<div class="container">
+      <div class="row">
+        <form method="post" action="" enctype="multipart/form-data">
+
+       <div class="row">
+        <div class="col-md-10 ">
+          
+
+          <input type="hidden" name="id" value="<%= blogs.dataValues.id%> ">
+          <input type="hidden" name="resim" value="<%= blogs.dataValues.resim%>">
+
+          <div class="row mb-2">
+            <label class="col-sm-1 col-form-label" for="baslik">Başlık</label>
+            <div class="col-sm-11">
+              <input name="baslik" type="text" class="form-control" id="baslik" value="<%= blogs.dataValues.title %> " />
+            </div>
+          </div>
+
+          <div class="row">
+            <label class="col-sm-1 col-form-label" for="altbaslik"
+              >Alt Baslik</label
+            >
+            <div class="col-sm-11">
+              <textarea  name="altbaslik" id="aciklama" cols="112" rows="5"><%= blogs.dataValues.altbaslik%></textarea>
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <label class="col-sm-1 col-form-label" for="aciklama"
+              >Aciklama</label
+            >
+            <div class="col-sm-11 ">
+              <textarea id="editor" name="aciklama"  cols="97" rows="10"><%= blogs.dataValues.Content%></textarea>
+            </div>
+          </div>
+
+          <div class="row mb-2">
+            <label for="resim" class="col-sm-1 col-form-label">Resim</label>
+            <div class="col-sm-11">
+              <img style="width:20%" class="img-fluid mb-3" src="/static/images/<%= blogs.dataValues.resim %> " alt="">
+              <input type="file" name="resim" class="form-control" id="resim" />
+            </div>
+          </div>
+
+          <div class="row mb-3">
+              <div class="col-sm-11 offset-sm-1">
+                <button type="submit" class="btn btn-primary">Save Data</button>
+              </div>
+          </div>
+      </div>
+
+      <div class="col-md-2  ">
+
+    <div class="row ">
+      <div class="col-sm-8 offset-sm-2">
+        <div class="form-check">
+          <input class="form-check-input" name="anasayfa" type="checkbox" id="anasayfa" <%= blogs.anasayfa ? "checked" : "" %> >
+          <label class="form-check-label" for="anasayfa">
+           Anasayfa
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row ">
+      <div class="col-sm-8 offset-sm-2">
+        <div class="form-check">
+          <input class="form-check-input" id="onay" name="onay" type="checkbox"   <%= blogs.onay ? "checked" : "" %> >
+          <label class="form-check-label" for="onay">
+           Onay
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row border-top pt-3">
+      <div class="col-sm-8 offset-sm-2">
+        <% category.forEach(category => { %>
+          <!-- Some fonksiyonu true false -->
+          <div class="form-check">
+              <input class="form-check-input"
+                  value="<%=category.id%>"
+                  <%=blogs.categories.some(cat => cat.id ==category.id) ? "checked" : ""%> 
+                  id="category_<%=category.id%>" 
+                  name="categories[]" 
+                  type="checkbox" >
+              <label class="form-check-label" for="onay"> 
+               <%= category.name %> 
+              </label>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+
+
+      </div>
+      </div>
+
+  </form>
+
+    </div>
+  </div>
+</div>
+
+
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/classic/ckeditor.js"></script>
+    <script>
+      ClassicEditor
+          .create( document.querySelector( '#editor' ) )
+          .catch( error => {
+              console.error( error );
+          } );
+  </script>
+  </body>
+</html>

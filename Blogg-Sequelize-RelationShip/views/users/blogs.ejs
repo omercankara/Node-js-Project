@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../partials/head") %>
+  </head>
+  <body>
+    <%- include ("../partials/new.ejs") %>
+    <div class="container mt-3">
+      <div class="row">
+        <!--MENU BAR-->
+        <div class="col-md-3">
+          <div class="list-group">
+            <%- include("../partials/categoryMenu",{categories,selectedCategories}) %>
+          </div>
+        </div>
+
+       
+
+        <div class="col-md-9">
+          <% if (blogs.length==0) { %>
+            <%- include("../partials/noProducts") %>
+          <% } %>
+          <% blogs.forEach(blog => { %> <%-
+          include("../partials/blogsCard",blog) %> <% }) %>
+        </div>
+
+
+
+
+        <% if (blogs.filter(b => b.onay).length > 3) { %> <%-
+        include("../partials/pagination") %> <% } %>
+      </div>
+    </div>
+  </body>
+</html>

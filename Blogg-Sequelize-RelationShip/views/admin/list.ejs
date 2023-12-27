@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../partials/head") %>
+  </head>
+  <body>
+    <%- include ("../partials/new.ejs") %>
+    <div class="container">
+      <div class="row ">
+        <div class="col-12 mt-3">
+          <% if (action != "undefined" && action=="edit") { %>
+              <div class="col-12 alert alert-success">İslem Basarili. Blog Güncellendi</div>
+          <% } %>
+          <% if (action != "undefined" && action=="create") { %>
+            <div class="col-12 alert alert-success">İslem Basarili. Blog Olustruldu</div>
+        <% } %>
+        <% if (action != "undefined" && action=="delete") { %>
+          <div class="col-12 alert alert-success">İslem Basarili. Blog Silindi</div>
+      <% } %>
+          <table class="table table-bordered table-striped">
+            <thead>
+              <tr>
+                <th style="width:50px">İd</th>
+                <th style="width:150px">Resim</ths>
+                <th>Baslik</th>
+              <th>Alt baslik</th>
+              <th>Kategori</th>
+                <th style="width:130px">Controller</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% blogs.forEach(blog => { %>
+              <tr>
+                <td><%= blog.id%></td>
+                <td><img  class="img-fluid" src="/static/images/<%= blog.dataValues.resim%> " alt="" /></td>
+                <td><%= blog.dataValues.title %></td>
+                <td><%= blog.dataValues.altbaslik %> </td>
+             <td>
+              <% blog.categories.forEach(category => { %>
+                <%= category.dataValues.name %> 
+             <% }) %>
+             </td>
+                <td><a class="btn  btn-sm btn-primary" href="/admin/blogs/<%= blog.dataValues.id%>">Edit</a>
+                  <a class="btn  btn-sm btn-danger "href="/blogs/delete/<%= blog.dataValues.id %>">Delete</a>
+                </td>
+               
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

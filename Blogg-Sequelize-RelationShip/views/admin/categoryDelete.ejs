@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../partials/head") %>
+  </head>
+  <body>
+    <div class="container bg-primary">
+      <div class="row">
+
+        <div class="col-12 mt-3 ">
+         <div class="alert-alert-secondary">
+            <p class="mb-3">
+                <b><%=category.name%></b>
+                <br><p class="text-white">İsimli Category Kaydını Silmek İstiyor Musunuz</p>
+            </p>
+            <form method="post">
+                <input type="hidden" name="categoryid" value="<%=category.id%>">
+                <button class="btn btn-success" type="submit">Evet</button>
+                <button class="btn btn-danger" type="submit"><a class="btn" href="/admin/blogs">Vazgeç</a></button
+            </form>
+         </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

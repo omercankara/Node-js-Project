@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("../partials/head") %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 mt-3">
+          <form method="post" action="">
+            <input
+              type="hidden"
+              name="categoryid"
+              value="<%= category.id%> "
+            />
+            <div class="row mb-1">
+              <label class="col-sm-2 col-form-label" for="baslik"
+                >Kategori Giriniz</label
+              >
+              <div class="col-sm-8">
+                <input
+                  name="categoryName"
+                  type="text"
+                  class="form-control"
+                  id="baslik"
+                  value="<%=category.name%>"
+                />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-sm-8 offset-sm-2">
+                <button type="submit" class="btn btn-primary btn-sm">Edit category</button>
+              </div>
+            </div>
+          </form>
+            <div class="row">
+             <div class="col-12">
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th style="width:50px">İd</th>
+                    <th style="width:150px">Resim</ths>
+                    <th>Baslik</th>
+                  <th>Alt baslik</th>
+                    <th style="width:200px">Controller</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% blogs.forEach(blog => { %>
+                  <tr>
+                    <td><%= blog.id%></td>
+                    <td><img  class="img-fluid" src="/static/images/<%= blog.dataValues.resim%> " alt="" /></td>
+                    <td><%= blog.dataValues.title %></td>
+                    <td><%= blog.dataValues.altbaslik %> </td>
+                    <td>
+
+                      <a class="btn  btn-sm btn-primary" href="/admin/blogs/<%= blog.dataValues.id%>">Edit</a>
+                      
+                      <form style="display:inline-block" action="/admin/category/remove" method="post">
+                          <input type="hidden" name="blogid" value="<%= blog.id%>">
+                          <input type="hidden" name="categoryid" value="<%=category.id%>">
+                          <button class="btn btn-sm btn-danger" type="submit">
+                          kategoriden Çıkart
+                        </button>
+                      </form>
+                  
+                   
+                    </td>
+                   
+                  </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+              <p class="alert alert-primary"> Toplam Data Sayısı : <%= countBlog %> </p>
+             
+             </div>
+            </div>
+
+          
+    
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
