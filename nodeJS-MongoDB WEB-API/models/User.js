@@ -5,9 +5,9 @@ const userSchema = mongoose.Schema({
     email: String,
     password: String,
 }, {
-    timestamps: true // İsteğe bağlı olarak createdAt ve updatedAt alanları ekleyebilirsiniz.
+    timestamps: true 
 });
 
 const User = mongoose.model("User", userSchema);
 
-module.exports = User; // Model adını baş harfi büyük olarak düzelttim.
+module.exports = User; 
